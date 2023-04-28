@@ -25,11 +25,33 @@ function criarLivro(novoLivro) {
 }
 
 function atualizarLivro(id, dadosLivro) {
-    
+    const listaLivros = lerDados(pathLivro);
+    let possuiId = false;
+    listaLivros.forEach(livro => {
+        if ((livro.nome === dadosLivro.nome) && (livro.nome.length == dadosLivro.nome.length)) {
+            throw new Error("Já existe um livro com esse nome!");
+        }
+        if (livro.id === id) {
+            livro.nome = dadosLivro.nome;
+            possuiId = true;
+        }
+    });
+    if (!possuiId) {
+        throw new Error("Não existe livro com esse Id");
+    }
+    fs.writeFileSync(pathLivro, JSON.stringify(listaLivros));
+    return listaLivros;
 }
 
 function deletarLivro(id) {
-    
+    const listaLivros = lerDados(pathLivro);
+    const livro = listaLivros.filter(livro => livro.id == id);
+    if (livro.length > 0) {
+        let indiceLivro = listaLivros.indexOf(livro);
+        listaLivros.splice(indiceLivro,1);
+    }
+    fs.writeFileSync(pathLivro, JSON.stringify(listaLivros));
+    return listaLivros;
 }
 
 export { todosOsLivros, somenteUmLivro, criarLivro, atualizarLivro, deletarLivro };
