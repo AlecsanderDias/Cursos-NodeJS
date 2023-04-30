@@ -43,8 +43,8 @@ class LivroController {
     static deletarLivro = (req, res) => {
         const livro = req.params.id;
         try {
-            deletarLivro(livro);
-            res.status(201).json("Livro deletado com sucesso");
+            const livros = deletarLivro(livro);
+            res.status(200).json(livros);
         } catch (error) {
             res.status(500).json(error.message);
         }
