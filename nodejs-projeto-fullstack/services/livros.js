@@ -1,4 +1,16 @@
+import Services from "./services.js";
+
+class LivroServices extends Services {
+    constructor() {
+        super("livro.js");
+    }
+}
+
+export default LivroServices;
+
+/*
 import fs from "fs";
+
 const pathLivro = `${process.cwd()}/assets/livro.js`;
 
 function lerDados(pathLivro) {
@@ -53,5 +65,5 @@ function deletarLivro(id) {
     fs.writeFileSync(pathLivro, JSON.stringify(listaLivros));
     return listaLivros;
 }
-
 export { todosOsLivros, somenteUmLivro, criarLivro, atualizarLivro, deletarLivro };
+*/
