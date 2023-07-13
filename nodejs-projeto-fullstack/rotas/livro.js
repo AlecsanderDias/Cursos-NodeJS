@@ -12,9 +12,9 @@ router
         }
     })
     .get("/livros", LivroController.pegaTodosLivros)
-    .get("/:id", LivroController.somenteUmLivro)
-    .post("/livro", LivroController.criarLivro)
-    .patch("/:id", LivroController.atualizarLivro)
-    .delete("/:id", LivroController.deletarLivro);
+    .get("/livros/:id", LivroController.somenteUmLivro)
+    .post("/livros", LivroController.criarLivro)
+    .patch("/livros/:id", LivroController.atualizarLivro)
+    .delete("/livros/:id", LivroController.deletarLivro);
 
 export default router;
