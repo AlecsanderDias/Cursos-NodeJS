@@ -1,3 +1,14 @@
+import Services from "./services.js";
+
+class FavoritosServices extends Services
+{
+    constructor() {
+        super('favoritos.js');
+    }
+}
+
+export default FavoritosServices;
+/*
 import fs from "fs";
 
 const pathLivro = `${process.cwd()}/assets/favoritos.js`;
@@ -13,3 +24,4 @@ function todosOsFavoritos() {
 }
 
 export { todosOsFavoritos };
+*/

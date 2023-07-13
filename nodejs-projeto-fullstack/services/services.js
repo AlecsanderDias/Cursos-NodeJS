@@ -27,43 +27,43 @@ class Services {
         return resultado;
     }
 
-    criaUm(novoLivro) {
-        const listaLivros = this.lerDados(pathLivro);
-        const filtraLivros = listaLivros.filter(livro => livro.id === novoLivro.id || livro.nome === novoLivro.nome);
-        if (filtraLivros.length > 0) {
-            throw new Error("Já existe um livro com esse nome ou id!");
-        } else this.escreverDados([...listaLivros, novoLivro]);
+    criaUm(novoItem) {
+        const listaItems = this.lerDados(this.caminhoDoArquivo);
+        const filtraItems = listaItems.filter(item => item.id === novoItem.id || item.nome === novoItem.nome);
+        if (filtraItems.length > 0) {
+            throw new Error("Já existe um item com esse nome ou id!");
+        } else this.escreverDados([...listaItems, novoItem]);
     }
 
 
     deletaUm(id) {
-        const listaLivros = this.lerDados(pathLivro);
-        const livro = listaLivros.filter(livro => livro.id == Number(id));
-        if (livro.length > 0) {
-            let indiceLivro = listaLivros.indexOf(livro);
-            listaLivros.splice(indiceLivro, 1);
+        const listaItems = this.lerDados(this.caminhoDoArquivo);
+        const item = listaItems.filter(item => item.id == Number(id));
+        if (item.length > 0) {
+            let indiceItem = listaItems.findIndex(item => item.id == id);
+            listaItems.splice(indiceItem, 1);
         }
-        this.escreverDados(listaLivros);
-        return listaLivros;
+        this.escreverDados(listaItems);
+        return listaItems;
     }
 
-    atualizaUm(id, dadosLivro) {
-        const listaLivros = this.lerDados(this.caminhoDoArquivo);
+    atualizaUm(id, dadosItem) {
+        const listaItems = this.lerDados(this.caminhoDoArquivo);
         let possuiId = false;
-        listaLivros.forEach(livro => {
-            if ((livro.nome === dadosLivro.nome) && (livro.nome.length == dadosLivro.nome.length)) {
-                throw new Error("Já existe um livro com esse nome!");
+        listaItems.forEach(item => {
+            if ((item.nome === dadosItem.nome) && (item.nome.length == dadosItem.nome.length)) {
+                throw new Error("Já existe um item com esse nome!");
             }
-            if (livro.id === Number(id)) {
-                livro.nome = dadosLivro.nome;
+            if (item.id === Number(id)) {
+                item.nome = dadosItem.nome;
                 possuiId = true;
             }
         });
         if (!possuiId) {
-            throw new Error("Não existe livro com esse Id");
+            throw new Error("Não existe item com esse Id");
         }
-        this.escreverDados(listaLivros);
-        return listaLivros;
+        this.escreverDados(listaItems);
+        return listaItems;
     }
 }
 
